@@ -27,36 +27,33 @@ require '../db_connect.php';
 	</script>
 </head>
 <body>
-  <!--<div id="page-wrapper-login">-->
-    <div id="text1">
-    	<?php
-       $usernameOwn = $_SESSION['usrNameOwn'];
-      ?>
-    </div>
-      <img src=<?php
-                  if(file_exists($usernameOwn . "_pp.jpg")){
-                    echo "\"";
-                    echo $usernameOwn;
-                    echo "_pp.jpg";
-                    echo "\"";
-                  }
-                  else{
-                    echo "\"/profile_pictures/default_pp.jpg\"";
-                  }
-                ?> alt="Profile Picture" style="float:left;width:300px;height:300px;">
-      <form action="upload_pp.php" method="POST" enctype="multipart/form-data">
-        <input type="hidden" name="MAX_FILE_SIZE" value="300000"/>
-        <input name="uploadfile" type="file"/>
-        <input type="submit" value="Upload Profile Picture" />
-	  	</form>
-			<form id="changePass" action="change_pass.php" method="POST">
-				<input id="owner" type="hidden" name="owner" value=<?php print "\"$usernameOwn\"";?>>
-				<input type="submit" name="submit" value="Change Password">
-	  	</form>
-      <form action="change_pass.php" method="POST">
-				<input id="owner" type="hidden" name="owner" value=<?php print "\"$usernameOwn\"";?>>
-				<input type="submit" name="submit" value="Change Password">
-	  	</form>
-		<!--</div>-->
+  <a href="profile.php "> Profile </a>
+  <a href="friend_list.php "> Friend List </a>
+  <a href="talk.php "> Last Chat </a>
+  <?php
+   $usernameOwn = $_SESSION['usrNameOwn'];
+  ?>
+  <img src=<?php
+              if(file_exists("profile_pictures/" . $usernameOwn . "_pp.jpg")){
+                echo "\"";
+                echo "profile_pictures/";
+                echo $usernameOwn;
+                echo "_pp.jpg";
+                echo "\"";
+              }
+              else{
+                echo "\"/profile_pictures/default_pp.jpg\"";
+              }
+            ?> alt="Profile Picture" style="float:left;width:300px;height:300px;">
+  <div>
+    <form action="upload_pp.php" method="POST" enctype="multipart/form-data">
+      <input name="uploadfile" type="file" required />
+      <input type="submit" value="Upload Profile Picture" />
+    </form>
+    <form action="change_pass.php" method="POST">
+    	<input type="hidden" name="owner" value=<?php print "\"$usernameOwn\"";?>>
+    	<input type="submit" name="submit" value="Change Password">
+    </form>
+  </div>
 </body>
 </html>

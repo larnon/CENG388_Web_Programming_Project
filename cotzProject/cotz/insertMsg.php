@@ -1,15 +1,17 @@
 <?php
-if ( $_SERVER['REQUEST_METHOD']!='POST' && realpath(__FILE__) == realpath( $_SERVER['SCRIPT_FILENAME'] ) ) {
-		die( header( 'location: /index.html' ) );
+session_start();
+if(!isset($_SESSION['usrNameOwn']) and !isset($_POST['sendMsg'])){
+  die( header( 'location: /index.html' ) );
 }
-
 require '../db_connect.php';
 
-$user = $_POST['owner'];
-
+$sender = $_SESSION['usrNameOwn'];
+$receiver = $_POST['receiver'];
 $msgString = $_POST['msgString'];
 $msgStringProper = str_replace("'", "''", $msgString);
-$query = "INSERT INTO msg_table (owner, messages, date_added, time_added)
-          VALUES ('$user', '$msgStringProper', DATE(NOW()), CURTIME())";
+
+$query = "INSERT INTO msg_table (sender, receiver, message, date_added, time_added)
+          VALUES ('$sender', '$receiver', '$msgStringProper', DATE(NOW()), CURTIME())";
 $result = mysqli_query($connection, $query) or die(mysqli_error($connection));
+header( 'location: /talk.php' );
 ?>

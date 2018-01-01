@@ -27,37 +27,76 @@ require '../db_connect.php';
 	</script>
 </head>
 <body>
-  <!--<div id="page-wrapper-login">-->
-    <div id="text1">
-    	<?php
-        $usernameOwn = $_SESSION['usrNameOwn'];
-
-        $query = "SELECT * FROM friend_list WHERE username1='$usernameOwn' OR username2='$usernameOwn'";
-     		$result = mysqli_query($connection, $query) or die(mysqli_error($connection));
-     		$count = mysqli_num_rows($result);
-     		if ($count == 0){
-     		  echo " <h3> You do not have any friends yet. </h3>";
-     		}
-     		else{
-     			$query = "INSERT INTO user_login (username, password, email)
-     			          VALUES ('$username', '$password1', '$email')";
-     			$friends = mysqli_query($connection, $query) or die(mysqli_error($connection));
-          echo "<ul>";
-          while($friend = mysqli_fetch_array($friends, MYSQLI_ASSOC)){
-            if($friend['username1'] == $usernameOwn){
-              echo "<li> $friend[username2] </li>";
-            }
-            else{
-              echo "<li> $friend[username1] </li>";
-            }
-          }
-          echo "</ul>";
-      ?>
-    </div>
-			<form action="add_friend.php" method="POST">
-        <input type="text" name="username" required placeholder="USERNAME">
-				<input type="submit" name="submit" value="Add Friend">
-	  	</form>
-		<!--</div>-->
+  <a href="profile.php "> Profile </a>
+  <a href="friend_list.php "> Friend List </a>
+  <a href="talk.php "> Last Chat </a>
+  <div>
+    <?php
+      echo " <h2> Friend Requests </h2>";
+      $usernameOwn = $_SESSION['usrNameOwn'];
+      $query = "SELECT * FROM friend_list WHERE username2='$usernameOwn' AND accepted=0";
+      $result = mysqli_query($connection, $query) or die(mysqli_error($connection));
+      $count = mysqli_num_rows($result);
+      if ($count == 0){
+        echo " <h3> No pending friend requests to show. </h3>";
+      }
+      else{
+        echo "<ul>";
+        while($friendRequest = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+          $requestSender = $friendRequest['username1'];
+          echo "<li>
+                  <form action=\"friend_request.php\" method=\"POST\">
+                    <input type=\"hidden\" name=\"friendToAccept\" value=\"$requestSender\">
+                    <h3> $requestSender </h3>
+                  	<input type=\"submit\" name=\"accept\" value=\"Accept\">
+                    <input type=\"submit\" name=\"decline\" value=\"Decline\">
+                  </form>
+                </li>";
+        }
+        echo "</ul>";
+      }
+    ?>
+  </div>
+  <div>
+    <?php
+      echo " <h2> Friend List </h2>";
+      $query = "SELECT * FROM friend_list WHERE (username1='$usernameOwn' OR username2='$usernameOwn') AND accepted=1";
+  		$result = mysqli_query($connection, $query) or die(mysqli_error($connection));
+  		$count = mysqli_num_rows($result);
+  		if ($count == 0){
+  		  echo "<h3> You do not have any friends yet. </h3>";
+  		}
+  		else{
+      echo "<ul>";
+      while($friend = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+        if($friend['username1'] == $usernameOwn){
+          $friendToTalk =  $friend['username2'];
+          echo "<li>
+                  <form action=\"choose_friend.php\" method=\"POST\">
+                    <input type=\"hidden\" name=\"friendToTalk\" value=\"" . $friendToTalk . "\">
+                    <h3> $friend[username2] </h3>
+                    <input type=\"submit\" name=\"talk\" value=\"TALK\">
+                  </form>
+                </li>";
+        }
+        else{
+          $friendToTalk =  $friend['username1'];
+          echo "<li>
+                  <form action=\"choose_friend.php\" method=\"POST\">
+                    <input type=\"hidden\" name=\"friendToTalk\" value=\"" . $friendToTalk . "\">
+                    <h3> $friend[username1] </h3>
+                    <input type=\"submit\" name=\"talk\" value=\"TALK\">
+                  </form>
+                </li>";
+        }
+      }
+      echo "</ul>";
+      }
+    ?>
+  </div>
+  <form action="add_friend.php" method="POST">
+    <input type="text" name="friend" required placeholder="USERNAME">
+  	<input type="submit" name="submit" value="Add Friend">
+  </form>
 </body>
 </html>
