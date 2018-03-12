@@ -38,8 +38,7 @@ require 'db_connect.php';
               ?> alt="Profile Picture" style="width:300px;height:300px;">
     <form action="upload_pp.php" method="POST" enctype="multipart/form-data">
       <div class="center">
-        <input style="color: transparent;width: 240px;
-    overflow:hidden;" class="input1" name="uploadfile" type="file" required />
+        <input class="input1" name="uploadfile" type="file" required />
         <input class="input1" type="submit" value="Upload Profile Picture" />
       </div>
     </form>

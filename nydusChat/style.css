@@ -34,8 +34,44 @@ form {
               0 0 15px 5px rgba(0,200,200,0.6);
 }
 
+.input1Inline {
+  display: inline;
+  text-transform: uppercase;
+  font-size: 2rem;
+  padding: 0.6rem 1em;
+  margin: 10px 0 10px 0;
+  text-align: center;
+  color: rgb(0,200,200);
+  background-color: rgba(0,200,200,0.4);
+  border-radius: 10px;
+  border-top: 2px solid rgba(0,200,200,0.9);
+  border-bottom: 2px solid rgba(0,200,200,0.9);
+  border-left: 2px solid rgba(0,200,200,0.9);
+  border-right: 2px solid rgba(0,200,200,0.9);
+  box-shadow: 0 0 15px 5px rgba(0,200,200,0.6) inset,
+              0 0 15px 5px rgba(0,200,200,0.6);
+}
+
 .inputSmall {
   display: block;
+  text-transform: uppercase;
+  font-size: 1rem;
+  padding: 0.6rem 1em;
+  margin: 10px 0 10px 0;
+  text-align: center;
+  color: rgb(0,200,200);
+  background-color: rgba(0,200,200,0.4);
+  border-radius: 10px;
+  border-top: 2px solid rgba(0,200,200,0.9);
+  border-bottom: 2px solid rgba(0,200,200,0.9);
+  border-left: 2px solid rgba(0,200,200,0.9);
+  border-right: 2px solid rgba(0,200,200,0.9);
+  box-shadow: 0 0 15px 5px rgba(0,200,200,0.6) inset,
+              0 0 15px 5px rgba(0,200,200,0.6);
+}
+
+.inputSmallInline {
+  display: inline;
   text-transform: uppercase;
   font-size: 1rem;
   padding: 0.6rem 1em;
@@ -83,7 +119,17 @@ form {
   margin: auto;
 }
 
+.biggerFont {
+  font-size: 2rem;
+}
+
 .centerHorizontal {
+  margin: auto;
+  text-align: center;
+}
+
+.floatRight {
+  float: right;
   margin: auto;
   text-align: center;
 }
@@ -114,6 +160,7 @@ form {
   margin: auto;
   padding: 1rem;
   text-align: center;
+  background-color: rgb(20,20,20);
 }
 
 .footerLink {
@@ -135,14 +182,6 @@ form {
     right: 0;
     width: 100%;
     height: 100%;
-
-  /*border-radius: 10px;
-  border-top: 2px solid rgba(100,0,100,0.9);
-  border-bottom: 2px solid rgba(100,0,100,0.9);
-  border-left: 2px solid rgba(100,0,100,0.9);
-  border-right: 2px solid rgba(100,0,100,0.9);
-  box-shadow: 0 0 15px 5px rgba(100,0,100,0.6) inset,
-              0 0 15px 5px rgba(100,0,100,0.6);*/
 }
 
 #page-wrapper {
@@ -152,13 +191,6 @@ form {
   align-items: center;
   justify-content: center;
   margin: auto;
-  /*border-radius: 10px;
-  border-top: 2px solid rgba(100,0,100,0.9);
-  border-bottom: 2px solid rgba(100,0,100,0.9);
-  border-left: 2px solid rgba(100,0,100,0.9);
-  border-right: 2px solid rgba(100,0,100,0.9);
-  box-shadow: 0 0 15px 5px rgba(100,0,100,0.6) inset,
-              0 0 15px 5px rgba(100,0,100,0.6);*/
 }
 
 #page-wrapper-login {
@@ -168,13 +200,6 @@ form {
   align-items: center;
   justify-content: center;
   margin: auto;
-  /*border-radius: 10px;
-  border-top: 2px solid rgba(100,0,100,0.9);
-  border-bottom: 2px solid rgba(100,0,100,0.9);
-  border-left: 2px solid rgba(100,0,100,0.9);
-  border-right: 2px solid rgba(100,0,100,0.9);
-  box-shadow: 0 0 15px 5px rgba(100,0,100,0.6) inset,
-              0 0 15px 5px rgba(100,0,100,0.6);*/
 }
 
 #login {

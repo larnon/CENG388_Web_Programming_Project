@@ -10,8 +10,8 @@ $receiver = $_POST['receiver'];
 $msgString = $_POST['msgString'];
 $msgStringProper = str_replace("'", "''", $msgString);
 
-$query = "INSERT INTO msg_table (sender, receiver, message, date_added, time_added)
-          VALUES ('$sender', '$receiver', '$msgStringProper', DATE(NOW()), CURTIME())";
+$query = "INSERT INTO msg_table (sender, receiver, message, date_added, time_added, seen)
+          VALUES ('$sender', '$receiver', '$msgStringProper', DATE(NOW()), CURTIME(), 0)";
 $result = mysqli_query($connection, $query) or die(mysqli_error($connection));
 header( 'location: /talk.php' );
 ?>

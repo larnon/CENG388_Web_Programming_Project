@@ -3,10 +3,10 @@ session_start();
 if(!isset($_SESSION['usrNameOwn'])){
   die( header( 'location: /index.html' ) );
 }
-elseif(!isset($_POST['friendToRemove'])){
+elseif(!isset($_POST['userToRemoveBlock'])){
   header( 'location: /profile.php' );
 }
-$friendToRemove = $_POST['friendToRemove'];
+$userToRemoveBlock = $_POST['userToRemoveBlock'];
 ?>
 
 <!DOCTYPE html>
@@ -18,10 +18,10 @@ $friendToRemove = $_POST['friendToRemove'];
 </head>
 <body>
 	<div class="centerAbs">
-    <h1> Do you really want to delete your friend '<?php echo "$friendToRemove";?>' ? </h1>
-    <form action="delete_friend.php" method="POST">
+    <h1> Do you really want to remove this users block? '<?php echo "$userToRemoveBlock";?>' ? </h1>
+    <form action="delete_block.php" method="POST">
       <div class="centerHorizontal">
-        <input class="input1" type="hidden" name="friendToDelete" value=<?php echo "\"$friendToRemove\"";?>>
+        <input class="input1" type="hidden" name="userToDeleteBlock" value=<?php echo "\"$userToRemoveBlock\"";?>>
         <input class="input1Inline" type="submit" name="accept" value="Accept">
         <input class="input1Inline" type="submit" name="decline" value="Decline">
       </div>

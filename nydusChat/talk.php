@@ -7,6 +7,14 @@ elseif(!isset($_SESSION['friendToTalk'])){
   header( 'location: /profile.php' );
 }
 require 'db_connect.php';
+
+$usernameOwn = $_SESSION['usrNameOwn'];
+$usernameOther = $_SESSION['friendToTalk'];
+
+$query = "UPDATE msg_table
+          SET seen = 1
+          WHERE sender='$usernameOther' AND receiver='$usernameOwn' AND seen = 0";
+$result = mysqli_query($connection, $query) or die(mysqli_error($connection));
 ?>
 
 <!DOCTYPE html>
@@ -36,10 +44,6 @@ require 'db_connect.php';
     <button class="button1" onclick="window.location.href='/logout.php'"> Logout </button>
   </div>
   <div class="center">
-  	<?php
-     $usernameOwn = $_SESSION['usrNameOwn'];
-		 $usernameOther = $_SESSION['friendToTalk'];
-    ?>
   	<form action="insertMsg.php" method="POST">
       <div class="center">
     		<textarea id="msg" name="msgString" placeholder="Write your message here..." required rows="10" cols="100" maxlength="9999"></textarea>
